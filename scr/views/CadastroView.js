@@ -1,34 +1,23 @@
-import {useState} from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView }  from 'react-native-safe-area-context';
 
-export default function LoginView({navigation}) {
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-
-    const handleLogin = () => {
-        console.log('E-mail: ', email);
-        console.log('Senha: ', senha);
-    }
-
+export default function CadastroView({navigation}) {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
-                <Text style={styles.title}>Login</Text>
+                <Text style={styles.title}>Criar Conta</Text>
 
+                <TextInput style={styles.input} placeholder="Nome Completo"></TextInput>
                 <TextInput style={styles.input} placeholder="E-mail"></TextInput>
                 <TextInput style={styles.input} placeholder="Senha" secureTextEntry={true}></TextInput>
+                <TextInput style={styles.input} placeholder="Confirmar senha" secureTextEntry={true}></TextInput>
 
-                <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                    <Text style={styles.buttonText}>Entrar</Text>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity  onPress={() => navigation.navigate('Cadastro')}>
-                    <Text style={styles.link}>Cadastro</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity  onPress={() => navigation.navigate('EsqueciSenha')}>
-                    <Text style={styles.link}>Esqueci a senha</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                    <Text style={styles.link}>Já tenho conta</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

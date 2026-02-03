@@ -1,34 +1,21 @@
-import {useState} from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { SafeAreaView }  from 'react-native-safe-area-context';
 
-export default function LoginView({navigation}) {
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-
-    const handleLogin = () => {
-        console.log('E-mail: ', email);
-        console.log('Senha: ', senha);
-    }
-
+export default function EsqueciSenhaView({navigation}) {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
-                <Text style={styles.title}>Login</Text>
+                <Text style={styles.title}>Esqueci a senha</Text>
+                <Text style={styles.subtitle}>Informe seu e-mail para recuperar sua senha.</Text>
 
                 <TextInput style={styles.input} placeholder="E-mail"></TextInput>
-                <TextInput style={styles.input} placeholder="Senha" secureTextEntry={true}></TextInput>
 
-                <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                    <Text style={styles.buttonText}>Entrar</Text>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>Enviar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity  onPress={() => navigation.navigate('Cadastro')}>
-                    <Text style={styles.link}>Cadastro</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity  onPress={() => navigation.navigate('EsqueciSenha')}>
-                    <Text style={styles.link}>Esqueci a senha</Text>
+                <TouchableOpacity  onPress={() => navigation.goBack()}>
+                    <Text style={styles.link}>Voltar ara login</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -48,6 +35,12 @@ const styles = StyleSheet.create({
         marginBottom: 32,
         textAlign: 'center',
         color: '#333'
+    },
+    subtitle: {
+        fontSize: 16,
+        marginBottom: 24,
+        textAlign: 'center',
+        color: '#666'
     },
     input: {
         backgroundColor: '#fff',
