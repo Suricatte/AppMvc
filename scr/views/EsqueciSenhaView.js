@@ -15,7 +15,7 @@ export default function EsqueciSenhaView({navigation}) {
                 </TouchableOpacity>
 
                 <TouchableOpacity  onPress={() => navigation.goBack()}>
-                    <Text style={styles.link}>Voltar ara login</Text>
+                    <Text style={styles.link}>Voltar para login</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

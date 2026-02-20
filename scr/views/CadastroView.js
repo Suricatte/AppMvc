@@ -16,7 +16,7 @@ export default function CadastroView({navigation}) {
                     <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Text style={styles.link}>Já tenho conta</Text>
                 </TouchableOpacity>
             </View>
