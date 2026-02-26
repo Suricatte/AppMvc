@@ -2,12 +2,13 @@ import { StyleSheet, View, Image, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView }  from 'react-native-safe-area-context';
 import HeaderBar from '../components/HeaderBar';
+import CustomTabBar from '../components/CustomBar';
 
 const BANNER_IMAGE = '../../assets/adaptive-icon.png';
 
 export default function DetailsView({navigation}) {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <HeaderBar navigation={navigation}/>
 
             <ScrollView>
@@ -33,11 +34,17 @@ export default function DetailsView({navigation}) {
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 </Text>
             </ScrollView>
+
+            <CustomTabBar navigation={navigation} />
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+    container:{
+        backgroundColor: '#32343a',
+        flex: 1
+    },
     bannerContainer:{
         height: 220,
         marginHorizontal: 15,
@@ -63,6 +70,7 @@ const styles = StyleSheet.create({
     },
     description:{
         fontSize: 14,
+        color: '#f3f3f3',
         lineHeight: 20,
         paddingHorizontal: 15,
         paddingVertical: 20,

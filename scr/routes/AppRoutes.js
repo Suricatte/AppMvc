@@ -6,6 +6,8 @@ import CadastroView from "../views/CadastroView";
 import EsqueciSenhaView from "../views/EsqueciSenhaView";
 import ProfileView from "../views/ProfileView";
 import DetailsView from "../views/DetailsView";
+import HelpSupportView from "../views/HelpSupportView";
+
  
 const Stack = createStackNavigator();
  
@@ -19,6 +21,7 @@ export default function AppRoutes() {
             <Stack.Screen name="EsqueciSenha" component={EsqueciSenhaView} options={{title: 'Esqueci a senha'}}/>
             <Stack.Screen name="Profile" component={ProfileView} options={{title: 'Perfil'}}/>
             <Stack.Screen name="Details" component={DetailsView} options={{headerShown: false}}/>
+            <Stack.Screen name="HelpSupport" component={HelpSupportView} options={{title: 'Ajuda e Suporte', headerStyle: {backgroundColor: '#2b2d33ff'}, headerTintColor: '#ffffff', headerTitleAlign: 'center'}}/>
         </Stack.Navigator>
     );
 };
