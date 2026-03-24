@@ -22,18 +22,7 @@ export default function ProfileView({ navigation }) {
                     </View>
 
                     <View style={styles.menuContainer}>
-                        <TouchableOpacity style={styles.menuItem}>
-                            <View style={styles.menuItemIcon}>
-                                <Ionicons name='cart-outline' size={20} color="#666" />
-                            </View>
-
-                            <Text style={styles.menuItemText}>Meus pedidos</Text>
-                            <Ionicons name='chevron-forward' size={20} color="#666" />
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={styles.menuContainer}>
-                        <MenuItem icon='cart-outtline' text='Meus pedidos' onPress={() =>
+                        <MenuItem icon='cart-outline' text='Meus pedidos' onPress={() =>
                             navigation.navigate('MyOrdens')} />
                         <MenuItem icon="heart-outline" text="Lista de Desejos" onPress={() =>
                             navigation.navigate('Wishlist')} />
