@@ -8,7 +8,6 @@ import ProfileView from "../views/ProfileView";
 import DetailsView from "../views/DetailsView";
 import HelpSupportView from "../views/HelpSupportView";
 
- 
 const Stack = createStackNavigator();
  
 export default function AppRoutes() {
