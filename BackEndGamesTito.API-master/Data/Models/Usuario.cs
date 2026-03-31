@@ -12,7 +12,7 @@
         public int StatusId { get; set; }
 
         // O ponto de interrogação (?) indica que aceita NULL
-        public string? Telefone { get; set; }
+        public string? Celular { get; set; }
         public string? TelegramChatId { get; set; } 
         public string? ResetToken { get; set; }
         public DateTime? ResetTokenExpiry { get; set; }

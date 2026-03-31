@@ -14,8 +14,8 @@ export default function ProfileView({ navigation }) {
                             <Ionicons name='person-circle' size={100} color='#ccc' />
                         </View>
 
-                        <Text style={styles.userName}>Diego Rodrigues</Text>
-                        <Text style={styles.userEmail}>diego@email.com</Text>
+                        <Text style={styles.userName}>Lucas Barbosa</Text>
+                        <Text style={styles.userEmail}>lucas@gmail.com</Text>
 
                         <TouchableOpacity style={styles.editButton}>
                             <Text style={styles.editButtonText}>Editar Perfil</Text>

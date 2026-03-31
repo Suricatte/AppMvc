@@ -18,9 +18,15 @@ namespace BackEndGamesTito.API.Data.Models
         // O "?" indica que o valor pode ser nulo (campo opcional no banco).
         public string? JogoDescricao { get; set; }
 
+        public string? JogoAvaliacao { get; set; }
+
         // Propriedade que representa o caminho ou URL da imagem de capa do jogo.
         // Também é opcional, podendo armazenar null caso não exista capa.
         public string? JogoCapa { get; set; }
+
+        public string? JogoGenero { get; set; }
+
+        public DateTime? dataLancamento { get; set; }
 
         // Propriedade que representa o preço do jogo.
         // float? indica que o valor é numérico decimal e também pode ser nulo.

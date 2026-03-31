@@ -33,7 +33,7 @@ namespace BackEndGamesTito.API.Repositories
                     // Está linha da 'DataAtualizacao' entrada como objeto podendo ser um valor 'nulo'
                     command.Parameters.AddWithValue("@DataAtualizacao", (object)user.DataAtualizacao ?? DBNull.Value);
                     command.Parameters.AddWithValue("@StatusId", user.StatusId);
-                    command.Parameters.AddWithValue("@Telefone", (object)user.Telefone ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Celular", (object)user.Celular ?? DBNull.Value);
                     await command.ExecuteNonQueryAsync();
                 }
             }
@@ -72,9 +72,9 @@ namespace BackEndGamesTito.API.Repositories
 
        
                             // Como é string, verificamos se é nulo. Se não for, pegamos a string.
-                            Telefone = reader.IsDBNull(reader.GetOrdinal("Telefone"))
+                            Celular = reader.IsDBNull(reader.GetOrdinal("Celular"))
                                     ? null
-                                    : reader.GetString(reader.GetOrdinal("Telefone")),
+                                    : reader.GetString(reader.GetOrdinal("Celular")),
 
                             // Dica Sênior: Já que estamos aqui, vamos mapear o Token também
                             // Caso você precise debugar ou validar algo no futuro
@@ -94,18 +94,18 @@ namespace BackEndGamesTito.API.Repositories
             }
         }
 
-        // Novo método: Busca usuário pelo telefone exato
-        public async Task<Usuario?> GetUserByPhoneAsync(string telefone)
+        // Novo método: Busca usuário pelo Celular exato
+        public async Task<Usuario?> GetUserByPhoneAsync(string Celular)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                // Mudamos o WHERE para filtrar por Telefone
-                var commandText = @"SELECT TOP 1 * FROM dbo.Usuario WHERE Telefone = @Telefone";
+                // Mudamos o WHERE para filtrar por Celular
+                var commandText = @"SELECT TOP 1 * FROM dbo.Usuario WHERE Celular = @Celular";
 
                 using (var command = new SqlCommand(commandText, connection))
                 {
-                    command.Parameters.AddWithValue("@Telefone", telefone);
+                    command.Parameters.AddWithValue("@Celular", Celular);
 
                     using (var reader = await command.ExecuteReaderAsync())
                     {
@@ -126,9 +126,9 @@ namespace BackEndGamesTito.API.Repositories
 
                                 StatusId = reader.GetInt32(reader.GetOrdinal("StatusId")),
 
-                                Telefone = reader.IsDBNull(reader.GetOrdinal("Telefone"))
+                                Celular = reader.IsDBNull(reader.GetOrdinal("Celular"))
                                     ? null
-                                    : reader.GetString(reader.GetOrdinal("Telefone")),
+                                    : reader.GetString(reader.GetOrdinal("Celular")),
 
                                 ResetToken = reader.IsDBNull(reader.GetOrdinal("ResetToken"))
                                     ? null

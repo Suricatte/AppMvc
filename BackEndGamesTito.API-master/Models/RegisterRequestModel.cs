@@ -15,7 +15,7 @@ namespace BackEndGamesTito.API.Models
         public string PasswordHash { get; set; } = string.Empty;
 
     
-        [Phone(ErrorMessage = "Formato de telefone inválido")]
-        public string? Telefone { get; set; } // Pode ser opcional ou obrigatório, depende da regra de negócio
+        [Phone(ErrorMessage = "Formato de Celular inválido")]
+        public string? Celular { get; set; } // Pode ser opcional ou obrigatório, depende da regra de negócio
     }
 }

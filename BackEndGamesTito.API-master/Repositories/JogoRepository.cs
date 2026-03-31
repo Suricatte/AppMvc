@@ -62,26 +62,28 @@ namespace BackEndGamesTito.API.Repositories
                         // Adiciona um novo objeto Jogo na lista
                         jogos.Add(new Jogo
                         {
-                            // Lê o valor da coluna JogoId como inteiro
-                            JogoId = reader.GetInt32(reader.GetOrdinal("JogoId")),
-
-                            // Lê o nome do jogo
-                            JogoNome = reader.GetString(reader.GetOrdinal("JogoNome")),
-
-                            // Verifica se a coluna é NULL antes de ler
-                            JogoDescricao = reader.IsDBNull(reader.GetOrdinal("JogoDescricao"))
-                                ? null
-                                : reader.GetString(reader.GetOrdinal("JogoDescricao")),
-
-                            // Verifica se a capa é NULL antes de ler
-                            JogoCapa = reader.IsDBNull(reader.GetOrdinal("JogoCapa"))
-                                ? null
-                                : reader.GetString(reader.GetOrdinal("JogoCapa")),
-
-                            // Verifica se o preço é NULL antes de ler
-                            JogoPreco = reader.IsDBNull(reader.GetOrdinal("JogoPreco"))
-                                ? null
-                                : reader.GetFloat(reader.GetOrdinal("JogoPreco"))
+                                JogoId = reader.GetInt32(reader.GetOrdinal("JogoId")),
+                                JogoNome = reader.GetString(reader.GetOrdinal("JogoNome")),
+                                JogoDescricao = reader.IsDBNull(reader.GetOrdinal("JogoDescricao"))
+                                    ? null
+                                    : reader.GetString(reader.GetOrdinal("JogoDescricao")),
+                                JogoAvaliacao = reader.IsDBNull(reader.GetOrdinal
+                                    ("JogoAvaliacao"))
+                                    ? null
+                                    : reader.GetString(reader.GetOrdinal("JogoAvaliacao")),
+                                JogoCapa = reader.IsDBNull(reader.GetOrdinal("JogoCapa"))
+                                    ? null
+                                    : reader.GetString(reader.GetOrdinal("JogoCapa")),
+                                    JogoGenero = reader.IsDBNull(reader.GetOrdinal("JogoGenero"))
+                                    ? null
+                                    : reader.GetString(reader.GetOrdinal("JogoGenero")),
+                                dataLancamento = reader.IsDBNull(reader.GetOrdinal("dataLancamento"))
+                                    ? null
+                                    : reader.GetDateTime(reader.GetOrdinal("dataLancamento")),
+                                JogoPreco = reader.IsDBNull(reader.GetOrdinal("JogoPreco"))
+                                    ? null
+                                    : reader.GetFloat(reader.GetOrdinal
+                                    ("JogoPreco"))
                         });
                     }
                 }
@@ -123,12 +125,23 @@ namespace BackEndGamesTito.API.Repositories
                                 JogoDescricao = reader.IsDBNull(reader.GetOrdinal("JogoDescricao"))
                                     ? null
                                     : reader.GetString(reader.GetOrdinal("JogoDescricao")),
+                                JogoAvaliacao = reader.IsDBNull(reader.GetOrdinal
+                                    ("JogoAvaliacao"))
+                                    ? null
+                                    : reader.GetString(reader.GetOrdinal("JogoAvaliacao")),
                                 JogoCapa = reader.IsDBNull(reader.GetOrdinal("JogoCapa"))
                                     ? null
                                     : reader.GetString(reader.GetOrdinal("JogoCapa")),
+                                    JogoGenero = reader.IsDBNull(reader.GetOrdinal("JogoGenero"))
+                                    ? null
+                                    : reader.GetString(reader.GetOrdinal("JogoGenero")),
+                                dataLancamento = reader.IsDBNull(reader.GetOrdinal("dataLancamento"))
+                                    ? null
+                                    : reader.GetDateTime(reader.GetOrdinal("dataLancamento")),
                                 JogoPreco = reader.IsDBNull(reader.GetOrdinal("JogoPreco"))
                                     ? null
-                                    : reader.GetFloat(reader.GetOrdinal("JogoPreco"))
+                                    : reader.GetFloat(reader.GetOrdinal
+                                    ("JogoPreco"))
                             };
                         }
                     }

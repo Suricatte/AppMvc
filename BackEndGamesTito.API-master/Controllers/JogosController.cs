@@ -79,7 +79,10 @@ namespace BackEndGamesTito.API.Controllers
                 {
                     JogoNome = model.JogoNome,
                     JogoDescricao = model.JogoDescricao,
+                    JogoAvaliacao = model.JogoAvaliacao,
                     JogoCapa = model.JogoCapa,
+                    JogoGenero = model.JogoGenero,
+                    dataLancamento = model.dataLancamento,
                     JogoPreco = model.JogoPreco
                 };
 

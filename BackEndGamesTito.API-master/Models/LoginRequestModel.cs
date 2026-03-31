@@ -10,22 +10,22 @@ namespace BackEndGamesTito.API.Models
 {
     public class LoginRequestModel : IValidatableObject
     {
-        // Email não é obrigatório por si só: o usuário pode enviar email OU telefone
+        // Email não é obrigatório por si só: o usuário pode enviar email OU Celular
         [EmailAddress(ErrorMessage = "O Email informado não é válido.")]
         public string? Email { get; set; }
 
-        [Phone(ErrorMessage = "Formato de telefone inválido")]
-        public string? Telefone { get; set; }
+        [Phone(ErrorMessage = "Formato de Celular inválido")]
+        public string? Celular { get; set; }
 
         [Required(ErrorMessage = "O campo senha é obrigatório.")]
         public string PasswordHash { get; set; } = string.Empty; // Por questões de segurança preciso pedir a senha do usuário para a requisição
 
-        // Validação customizada: exigir pelo menos Email ou Telefone
+        // Validação customizada: exigir pelo menos Email ou Celular
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (string.IsNullOrWhiteSpace(Email) && string.IsNullOrWhiteSpace(Telefone))
+            if (string.IsNullOrWhiteSpace(Email) && string.IsNullOrWhiteSpace(Celular))
             {
-                yield return new ValidationResult("Informe o email ou o telefone.", new[] { nameof(Email), nameof(Telefone) });
+                yield return new ValidationResult("Informe o email ou o Celular.", new[] { nameof(Email), nameof(Celular) });
             }
         }
     }

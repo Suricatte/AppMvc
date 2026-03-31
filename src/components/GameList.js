@@ -7,14 +7,18 @@ const CapaComFallback = ({ jogoCapa }) => {
     const [erro, setErro] = useState(false);
     const API_BASE_URL = "http://10.0.2.2:5203/assets/";
     const IMAGEM_PADRAO = require('../../assets/icon.png');
-  
     return (
-            <Image
-                source={erro ? IMAGEM_PADRAO : { uri: `${API_BASE_URL}${jogoCapa}` }}
-                style={styles.gameImage}
-                onError={() => setErro(true)}
-                resizeMode='cover'
-            />          
+
+        <Image
+            source={erro ? IMAGEM_PADRAO : {
+                uri: `${API_BASE_URL}${jogoCapa}
+            ` }}
+            style={styles.gameImage}
+            onError={() => setErro(true)}
+            resizeMode='cover'
+        />
+
+
     )
 }
 
@@ -27,20 +31,25 @@ const GameItem = ({ item, navigation }) => {
             onPress={() => navigation.navigate('DetailsView', { id: item.jogoId })}
         >
             {/* <Image source={{ uri: item.image }} style={styles.gameImage} /> */}
-            <CapaComFallback jogoCapa={item.jogoCapa} />     
-      
+            <CapaComFallback jogoCapa={item.jogoCapa} />
+            {/*
+             <Image source={`http://10.0.2.2:5203/assets/ ${item.jogoCapa}`}
+              resizeMode='cover'/> */}
+
+
             <View style={styles.gamePriceContainer}>
                 <Text style={styles.gamePriceText}>
-                    R$ {item.jogoPreco.toLocaleString('pt-BR',{
-                        minimumFractionDigits:2,
-                        maximumFractionDigits:2
+                    R$ {item.jogoPreco.toLocaleString('pt-BR', {
+                        minimumFractionDigits: 2,
+                        maximumfractionDigits: 2
                     })}
-                    
+
                 </Text>
             </View>
 
             <Text style={styles.gameTitle} numberOfLines={2}>
                 {item.jogoNome}
+
             </Text>
 
             {item.rating && (
@@ -94,6 +103,7 @@ export default function GameList({ title, navigation }) {
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.listContent}
             />
+
         </View>
     );
 }
@@ -161,5 +171,4 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginBottom: 10
     }
-
 })

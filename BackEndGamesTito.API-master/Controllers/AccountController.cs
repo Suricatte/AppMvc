@@ -79,7 +79,7 @@ namespace BackEndGamesTito.API.Controllers
                     HashPass = HashBCrypt,
                     DataAtualizacao = DateTime.Now,
                     StatusId = 2,
-                    Telefone = model.Telefone
+                    Celular = model.Celular
                 };
 
                 await _usuarioRepository.CreateUserAsync(novoUsuario);
@@ -150,11 +150,11 @@ namespace BackEndGamesTito.API.Controllers
 
         public async Task<IActionResult> Login([FromBody] LoginRequestModel model)
         {
-            // 1. Busca o usuário no banco pelo email OU telefone
+            // 1. Busca o usuário no banco pelo email OU Celular
             var user = !string.IsNullOrWhiteSpace(model.Email)
                 ? await _usuarioRepository.GetUserByEmailAsync(model.Email!)
-                : !string.IsNullOrWhiteSpace(model.Telefone)
-                    ? await _usuarioRepository.GetUserByPhoneAsync(model.Telefone!)
+                : !string.IsNullOrWhiteSpace(model.Celular)
+                    ? await _usuarioRepository.GetUserByPhoneAsync(model.Celular!)
                     : null;
 
             if (user == null)
@@ -324,15 +324,15 @@ namespace BackEndGamesTito.API.Controllers
 
 
         [HttpPost("forgot-password-sms")]
-        public async Task<IActionResult> ForgotPasswordSms([FromBody] string telefone)
+        public async Task<IActionResult> ForgotPasswordSms([FromBody] string Celular)
         {
-            // 1. Busca o usuário pelo TELEFONE informado
+            // 1. Busca o usuário pelo Celular informado
             // O repositório vai procurar: Quem tem o número "+5511..."?
-            var user = await _usuarioRepository.GetUserByPhoneAsync(telefone);
+            var user = await _usuarioRepository.GetUserByPhoneAsync(Celular);
 
             if (user == null)
             {
-                return BadRequest(new { message = "Telefone não encontrado em nossa base de dados." });
+                return BadRequest(new { message = "Celular não encontrado em nossa base de dados." });
             }
 
             // 2. Gera Token
@@ -348,8 +348,8 @@ namespace BackEndGamesTito.API.Controllers
 
             try
             {
-                // Envia para o telefone que ele digitou (que é o mesmo que está no banco)
-                await _smsService.SendSmsAsync(user.Telefone, mensagem);
+                // Envia para o Celular que ele digitou (que é o mesmo que está no banco)
+                await _smsService.SendSmsAsync(user.Celular, mensagem);
                 return Ok(new { message = "SMS enviado com sucesso!" });
             }
             catch (Exception ex)

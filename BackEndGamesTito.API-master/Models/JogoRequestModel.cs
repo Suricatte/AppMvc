@@ -15,18 +15,28 @@ namespace BackEndGamesTito.API.Models
 
         // Propriedade que representa o nome do jogo
         // string.Empty define um valor padrão vazio para evitar valores nulos
+        public int JogoId { get; set; }
+
+        // Propriedade que representa o nome do jogo.
+        // string.Empty define um valor padrão vazio para evitar que a variável fique nula.
         public string JogoNome { get; set; } = string.Empty;
 
-        // Propriedade que representa a descrição do jogo
-        // O "?" indica que este campo é opcional (pode ser null)
+        // Propriedade que representa a descrição do jogo.
+        // O "?" indica que o valor pode ser nulo (campo opcional no banco).
         public string? JogoDescricao { get; set; }
-        
-        // Propriedade que representa o caminho ou URL da capa do jogo
-        // Também é opcional, podendo ser null
+
+        public string? JogoAvaliacao { get; set; }
+
+        // Propriedade que representa o caminho ou URL da imagem de capa do jogo.
+        // Também é opcional, podendo armazenar null caso não exista capa.
         public string? JogoCapa { get; set; }
-        
-        // Propriedade que representa o preço do jogo
-        // float? indica que o valor é numérico decimal e pode ser nulo
+
+        public string? JogoGenero { get; set; }
+
+        public DateTime? dataLancamento { get; set; }
+
+        // Propriedade que representa o preço do jogo.
+        // float? indica que o valor é numérico decimal e também pode ser nulo.
         public float? JogoPreco { get; set; }
     }
 }
