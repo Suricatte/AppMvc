@@ -10,51 +10,44 @@ export default function ProfileView({ navigation }) {
             <ScrollView>
                 <View>
                     <View style={styles.userInfoContainer}>
-                        <View style={styles.avatarConteiner}>
+                        <View style={styles.avatarContainer}>
                             <Ionicons name='person-circle' size={100} color='#ccc' />
                         </View>
-                        <Text style={styles.userName}>Lucas Barbosa</Text>
-                        <Text style={styles.userEmail}>lucas.barbosavds@gmail.com</Text>
+
+                        <Text style={styles.userName}>Diego Rodrigues</Text>
+                        <Text style={styles.userEmail}>diego@email.com</Text>
 
                         <TouchableOpacity style={styles.editButton}>
-                            <Text style={styles.editButtonText}>Editar perfil</Text>
+                            <Text style={styles.editButtonText}>Editar Perfil</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.menuContainer}>
-                        <MenuItem icon='cart-outline' text='Meus pedidos' onPress={() =>
-                            navigation.navigate('MyOrdens')} />
-                        <MenuItem icon="heart-outline" text="Lista de Desejos" onPress={() =>
-                            navigation.navigate('Wishlist')} />
-                        <MenuItem icon="settings-outline" text="Configurações" onPress={() =>
-                            navigation.navigate('Settings')} />
-                        <MenuItem icon="help-circle-outline" text="Ajuda e Suporte" onPress={() =>
-                            navigation.navigate('HelpSupport')} />
+                        <MenuItem icon='cart-outline' text='Meus Pedidos' onPress={() => navigation.navigate('MyOrders')} />
+                        <MenuItem icon='heart-outline' text='Lista de Desejos' onPress={() => navigation.navigate('Wishlint')} />
+                        <MenuItem icon='settings-outline' text='Configurações' onPress={() => navigation.navigate('Settings')} />
+                        <MenuItem icon='help-circle-outline' text='Ajuda e Suporte' onPress={() => navigation.navigate('HelpSupportView')} />
 
-
-
-                        <TouchableOpacity
-                            style={styles.menuItem} onPress={() =>
-                                navigation.navigate('Login')} >
+                        <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Login')}>
                             <View style={styles.menuItemIcon}>
-                                <Ionicons name="log-out-outline" size={20}
-                                    color="#ff6347" />
+                                <Ionicons name='log-out-outline' size={20} color="#ff6347" />
                             </View>
-                            <Text style={[styles.menuItemText, { color: '#ff6347' }]}>
-                                Sair</Text>
+                            <Text style={[styles.menuItemText, {color:'#ff6347'}]}>Sair</Text>                          
                         </TouchableOpacity>
 
+                        
                     </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
+
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#32343a',
-        flex: 1,
+        flex: 1
     },
     userInfoContainer: {
         alignItems: 'center',
@@ -62,7 +55,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#2c2c2c'
     },
-    avatarConteiner: {
+    avatarContainer: {
         marginBottom: 10
     },
     userName: {
@@ -84,12 +77,13 @@ const styles = StyleSheet.create({
         borderColor: '#9370db'
     },
     editButtonText: {
-        color: '#9370bd',
+        color: '#9370db',
         fontWeight: '600'
     },
     menuContainer: {
         marginTop: 10
     },
+
     menuItem: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -106,17 +100,24 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginLeft: 10
     }
-
-
 })
 
+
 const MenuItem = ({ icon, text, onPress }) => (
+
     <TouchableOpacity style={styles.menuItem} onPress={onPress}>
         <View style={styles.menuItemIcon}>
             <Ionicons name={icon} size={20} color="#666" />
         </View>
 
         <Text style={styles.menuItemText}>{text}</Text>
-        <Ionicons name="chevron-forward" size={20} color="#666" />
+        <Ionicons name='chevron-forward' size={20} color="#666" />
+
     </TouchableOpacity>
+
 );
+
+
+// log-out-outline
+// text sair - cor texto #ff6347
+// valta para login

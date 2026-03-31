@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     Text,
@@ -10,13 +10,13 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-import CustomTabBar from '../components/CustomBar'; // Reutilizando a Tab Bar
+import CustomTabBar from '../components/CustomTabBar'; // Reutilizando a Tab Bar
 import HeaderBar from '../components/HeaderBar'; // Reutilizando o Header Topo
 
 // Componentes modulares novos (a serem definidos abaixo)
-// import ConsoleSelector from '../components/ConsoleSelector';
-// import SystemRequirements from '../components/SystemRequirements';
-// import ReviewsSection from '../components/ReviewsSection';
+import ConsoleSelector from '../components/ConsoleSelector';
+import SystemRequirements from '../components/SystemRequirements';
+import ReviewsSection from '../components/ReviewsSection';
 
 // Usando o mesmo background e imagem de banner
 const background = require('../../assets/pastel_vegano.jpg');
@@ -29,14 +29,32 @@ const BANNER_IMAGE = require('../../assets/pastel_vegano.jpg');
 // Recebe:
 // route -> parâmetros enviados pela navegação
 // navigation -> controle de navegação
-export default function DetailsView ({ route, navigation }) {
+export default function DetailsView({ route, navigation }) {
 
     // Desestruturação para pegar o produto enviado da tela anterior
-    const { product } = route.params;
+    const { id } = route.params;
 
     // Exibe o produto no console (debug)
-    console.log(product)
+    console.log(id)
 
+    const [jogo, setJogo] = useState(null);
+    const API_URL = `http://10.0.2.2:5203/api/Jogos/${id}`;
+
+    const getJogo = async () => {
+        try {
+            const response = await fetch(API_URL);
+            const json = await response.json();
+            console.log("Jogo carregado: ", json)
+            setJogo(json);
+        }
+        catch {
+            console.log('teste1')
+        }
+    }
+
+    useEffect(() => {
+        getJogo();
+    }, []);
     return (
 
         <SafeAreaView style={detailsStyles.safeArea}>
@@ -49,7 +67,13 @@ export default function DetailsView ({ route, navigation }) {
                 {/* 2. Banner de Destaque e Nome do Jogo */}
                 <View >
                     <View style={detailsStyles.bannerContainer}>
-                        <Image source={{uri: product?.image}} style={detailsStyles.bannerImage} resizeMode="contain" />
+                        {jogo && (
+                            <Image
+                                source={{ uri: 'http://10.0.2.2:5203/assets/' + jogo.jogoCapa }}
+                                style={detailsStyles.bannerImage}
+                                resizeMode="cover"
+                            />
+                        )}
 
                         {/* Conteúdo sobreposto */}
                         <View style={detailsStyles.bannerOverlay}>
@@ -80,29 +104,29 @@ export default function DetailsView ({ route, navigation }) {
                 {/* 4. Seleção de Plataformas e Preço */}
                 <View style={detailsStyles.platformPriceContainer}>
                     <ConsoleSelector /> {/* Componente com PS5, XBOX, PC */}
+
                     <View style={detailsStyles.priceBox}>
                         <TouchableOpacity style={detailsStyles.buyButton}>
                             <MaterialCommunityIcons name="cart" size={20} color="#000" />
                             <Text style={detailsStyles.buyButtonText}>Pré-Venda Digital</Text>
                         </TouchableOpacity>
-                        <Text style={detailsStyles.priceText}>R$ {product?.price}</Text>
+
+                        <Text style={detailsStyles.priceText}> R$ 100</Text>
+
                     </View>
                 </View>
-                <Text style={detailsStyles.titleGame}>Nome do Jogo {product?.title}</Text>
+                <Text style={detailsStyles.titleGame}> {jogo?.jogoNome}</Text>
 
                 {/* 5. Descrição do Jogo */}
                 <Text style={detailsStyles.description}>
-                    {product.description}
-                    Immerse yourself destostian funtre metrs gladiatonia, upgrade, upgrade, en deitas peslcs de aera RPG.
-                    Immerse yourself destostian funtre metrs gladiatonia, upgrade, upgrade, en deitas peslcs de aera RPG.
-                    Immerse yourself destostian funtre metrs gladiatonia, upgrade, upgrade, en deitas peslcs de aera RPG.
-                    Immerse yourself destostian funtre metrs gladiatonia, upgrade, upgrade, en deitas peslcs de aera RPG.
-                    Immerse yourself destostian funtre metrs gladiatonia, upgrade, upgrade, en deitas peslcs de aera RPG.
+                    {jogo?.jogoDescricao}
+
 
                 </Text>
 
                 {/* 6. Requisitos de Sistema */}
                 <SystemRequirements />
+
 
                 {/* 7. Avaliações e Notas */}
                 <ReviewsSection />
