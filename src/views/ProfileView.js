@@ -15,7 +15,7 @@ export default function ProfileView({ navigation }) {
                         </View>
 
                         <Text style={styles.userName}>Lucas Barbosa</Text>
-                        <Text style={styles.userEmail}>lucas@gmail.com</Text>
+                        <Text style={styles.userEmail}>lucas@email.com</Text>
 
                         <TouchableOpacity style={styles.editButton}>
                             <Text style={styles.editButtonText}>Editar Perfil</Text>

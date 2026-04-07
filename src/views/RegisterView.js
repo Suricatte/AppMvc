@@ -6,11 +6,13 @@ import {
     TouchableOpacity,
     StyleSheet,
     ScrollView,
+    Alert,
 } from 'react-native';
 
 export default function RegisterView( { navigation }) {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
+    const [telefone, setTelefone] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
 
@@ -18,10 +20,14 @@ export default function RegisterView( { navigation }) {
         console.log({
             nome,
             email,
+            telefone,
             senha,
             confirmarSenha,
         });
-        // Depois conecta com o backend
+
+        if(senha !== confirmarSenha){
+            Alert.alert('Atenção', 'Senhas não coincidem')
+        }
     };
 
     return (
@@ -42,6 +48,14 @@ export default function RegisterView( { navigation }) {
                 onChangeText={setEmail}
                 keyboardType="email-address"
                 autoCapitalize="none"
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Telefone"
+                value={telefone}
+                onChangeText={setTelefone}
+                keyboardType="phone-pad"
             />
 
             <TextInput
