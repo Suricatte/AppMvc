@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
-import {
-    View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    StyleSheet,
-    ScrollView,
-    Alert,
-} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
 
-export default function RegisterView( { navigation }) {
+export default function RegisterView({ navigation }) {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
 
-    const handleRegister = () => {
+    const [loading, setLoading] = useState(false)
+
+    const handleRegister = async () => {
         console.log({
             nome,
             email,
@@ -25,8 +19,49 @@ export default function RegisterView( { navigation }) {
             confirmarSenha,
         });
 
-        if(senha !== confirmarSenha){
+        const API_URL = 'http://10.0.2.2:5203/api/Account/register'
+
+        if (senha !== confirmarSenha) {
             Alert.alert('Atenção', 'Senhas não coincidem')
+            return
+        }
+
+        if (!nome || !email || !telefone || !senha || !confirmarSenha) {
+            Alert.alert('Atenção', 'Preencha todos os campos')
+            return
+        }
+
+        try {
+            setLoading(true)
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nomeCompleto: nome,
+                    email: email,
+                    passwordHash: senha,
+                    celular: telefone || 11999999999
+                })
+            });
+
+            if(response.ok){
+                Alert.alert('Sucesso', 'Conta cadastrada com sucesso');
+                navigation.navigate('Login')
+            }
+            else{
+                const erroData = await response.json();
+                const erroMessage = erroData.message || 'Erro ao criar conta';
+                Alert.alert('Erro', erroMessage)
+            }
+        }
+        catch (error) {
+            console.log('Erro ao cadastrar usuário:', error)
+            Alert.alert('Erro', 'Ocorreu um erro ao criar conta')
+        }
+        finally {
+            setLoading(false)
         }
     };
 
@@ -74,8 +109,17 @@ export default function RegisterView( { navigation }) {
                 secureTextEntry
             />
 
-            <TouchableOpacity style={styles.button} onPress={handleRegister}>
-                <Text style={styles.buttonText}>Cadastrar</Text>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={handleRegister}
+                disabled={loading}
+            >
+                {loading ? (
+                    <Text style={styles.buttonText}>Carregando...</Text>
+                ) : (
+                    <Text style={styles.buttonText}>Cadastrar</Text>
+                )
+                }
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
